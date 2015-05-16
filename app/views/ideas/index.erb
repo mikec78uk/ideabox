@@ -2,7 +2,7 @@
 <% @meta_description = 'Great ideas can come from anywhere'%>
 
 <% if flash[:success].present? %>
-          <div data-alert class="alert-box success radius small-11 small-centered text-center columns">
+          <div data-alert class="alert-box success radius text-center columns">
   				<%= flash[:success] %>
   				<a href="#" class="close">&times;</a>
 			</div>
@@ -25,3 +25,25 @@
 
 
 <p class="text-center">Ideas so far: <%= pluralize(@ideas.count, "idea") %></p>
+
+
+
+    <div class="row">
+
+        <div class="large-8 columns">
+      
+            <% @ideas.each do |idea| %>
+                <h4><%= link_to idea.title, idea_path(idea) %></h4>
+                <p><%= truncate(idea.description, :length => 150, :separator => ' ')%> <br /> <%= link_to "Read more", idea_path(idea), :class => "radius secondary label" %></p>   
+            <% end %>
+        </div>
+
+        <div class="large-4 columns">
+          ...
+        </div>
+    </div>
+
+
+
+
+

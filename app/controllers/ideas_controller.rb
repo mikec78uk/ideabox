@@ -19,7 +19,7 @@ class IdeasController < ApplicationController
 			
 		else
 			# sort by most voted
-			@ideas = Idea.order("votes_count desc, created_at desc")
+			@ideas = Idea.order("created_at desc")
 		end
 		
 		

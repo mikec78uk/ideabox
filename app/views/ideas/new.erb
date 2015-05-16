@@ -6,7 +6,7 @@
 
 		<%= form.input :title, label: "Title"%>
 		<%= form.input :problem, label: "What problem are you trying to solve?"%>
-		<%= form.input :description, label: "What's your idea?"%>
+		<%= form.input :description, label: "What's your idea?", input_html: { class: 'wysihtml5' }%>
 	
 		<%= form.button :submit, "Submit your idea", data: { disable_with: "Submitting..." }  %>
 
