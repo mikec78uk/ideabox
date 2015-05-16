@@ -1,12 +1,27 @@
 <% @page_title = 'Get Ideas from your employees' %>
 <% @meta_description = 'Great ideas can come from anywhere'%>
 
+<% if flash[:success].present? %>
+          <div data-alert class="alert-box success radius small-11 small-centered text-center columns">
+  				<%= flash[:success] %>
+  				<a href="#" class="close">&times;</a>
+			</div>
+<% end %>
+
+<% if flash[:alert].present? %>
+          <div data-alert class="home-flash">
+            <%= flash[:alert] %>
+          </div>
+<% end %>
+
+
 <div class="row">
   <div class="small-11 small-centered text-center columns">
       <h1>Great ideas can come from anywhere!</h1>
-      <a href="#" class="button">Add your idea</a>
+      <!-- Add a new idea -->
+      <%= link_to "Add your idea", new_idea_path, class: "button" %>
   </div>
 </div>
 
 
-<p class="text-center">Ideas so far: <%=@ideas.count%></p>
+<p class="text-center">Ideas so far: <%= pluralize(@ideas.count, "idea") %></p>

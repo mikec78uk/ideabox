@@ -37,10 +37,7 @@ class IdeasController < ApplicationController
 
 	# This is going to be the "Adding a new story form"
 	def new
-		# Make @story be a blank story, ready to be filled in
-		# Just the form on the front page, create is doing something in the db
-		@idea = Idea.new
-		
+		@idea = Idea.new		
 	end
 
 
@@ -55,7 +52,7 @@ class IdeasController < ApplicationController
 		# If they don't pass, show the form with errors
 			if @idea.save
 				# Let user know its successful
-				flash[:success] = "Yay, you've submitted the story " + @idea.title
+				flash[:success] = "Congratulations, your idea has been successfully added."
 				# lets make it go back to the homepage
 				redirect_to root_path
 				
@@ -112,7 +109,7 @@ class IdeasController < ApplicationController
 
 
 	def idea_params
-		params.require(:idea).permit(:title, :description)
+		params.require(:idea).permit(:title, :description, :problem)
 	end
 
 
