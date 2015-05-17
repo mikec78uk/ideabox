@@ -47,21 +47,32 @@ class IdeasController < ApplicationController
 	def create
 		#make @story be a blank story but with fields filled in
 		@idea = Idea.new(idea_params)
+
+		respond_to do |format|
+	      if @idea.save
+	        format.html { redirect_to @idea, notice: 'Product was successfully created.' }
+	        format.json { render json: @idea, status: :created, location: @idea }
+	      else
+	        format.html { render action: "new" }
+	        format.json { render json: @idea.errors, status: :unprocessable_entity }
+	      end
+	    end
 	
 		# Actually save to db IF validations pass
 		# If they don't pass, show the form with errors
-			if @idea.save
+		#	if @idea.save
 				# Let user know its successful
-				flash[:success] = "Congratulations, your idea has been successfully added."
+		#		flash = { success: "Congratulations, your idea has been successfully added" }
+				#flash[:notice] = "Congratulations, your idea has been successfully added."
 				# lets make it go back to the homepage
-				redirect_to root_path
+		#		redirect_to root_path
 				
-			else
+		#	else
 				# if the story DOESN'T save do this
 				# Show the new.html.erb form with errors
 				# render shows the new page (retains the values and shows the error/s)
-				render "new"
-			end	
+		#		render "new"
+		#	end	
 			
 	end
 

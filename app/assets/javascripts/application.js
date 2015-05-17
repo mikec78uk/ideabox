@@ -12,15 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require foundation
 //= require turbolinks
+//= require bootstrap-sprockets
 //= require_tree .
-
-$(function(){ $(document).foundation(); });
-
-// So you can have a WYSIWYG Editor
-$(document).ready(function(){
-  $('.wysihtml5').each(function(i, elem) {
-    $(elem).wysihtml5();
-  });
-})
