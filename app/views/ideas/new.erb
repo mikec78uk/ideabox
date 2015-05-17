@@ -1,15 +1,9 @@
 <% @page_title = 'Add your awesome idea' %>
 <% @meta_description = 'Great ideas can come from anywhere'%>
-
-<h2>Add your design</h2>
-	<%= simple_form_for @idea do |form| %>
-
-		<%= form.input :title, label: "Title"%>
-		<%= form.input :problem, label: "What problem are you trying to solve?"%>
-		<%= form.input :description, label: "What's your idea?", input_html: { class: 'wysihtml5' }%>
+<div class='container'>
+<h2>Tell us about your idea...</h2>
 	
-		<%= form.button :submit, "Submit your idea", data: { disable_with: "Submitting..." }  %>
+	<%= render :partial => 'form' %>
 
-	<% end %>
 
 

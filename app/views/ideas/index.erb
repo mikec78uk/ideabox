@@ -1,31 +1,38 @@
 <% @page_title = 'Get Ideas from your employees' %>
 <% @meta_description = 'Great ideas can come from anywhere'%>
 
-<div class="row">
-  <div class="small-11 small-centered text-center columns">
+
+<div class="row text-center">
+
+
+    <div class="jumbotron">
       <h1>Great ideas can come from anywhere!</h1>
-      <!-- Add a new idea -->
-      <%= link_to "Add your idea", new_idea_path, class: "button" %>
-  </div>
+      <p>...</p>
+      <p><%= link_to "Add your idea", new_idea_path, class: "btn btn-primary btn-lg" %></p>
+    </div>
 </div>
+
 
 
 <p class="text-center">Ideas so far: <%= pluralize(@ideas.count, "idea") %></p>
 
 
-
+<div class="container">
     <div class="row">
 
-        <div class="large-8 columns">
+        <div class="col-md-8">
       
             <% @ideas.each do |idea| %>
                 <h4><%= link_to idea.title, idea_path(idea) %></h4>
-                <p><%= truncate(idea.description, :length => 150, :separator => ' ')%> <br /> <%= link_to "Read more", idea_path(idea), :class => "radius secondary label" %></p>   
+                <p><em><%= truncate(idea.problem, :length => 150, :separator => ' ')%></em>
+                      <br /> 
+                    <%= link_to "Read more", idea_path(idea), :class => "label label-default" %>
+                </p>   
             <% end %>
         </div>
 
-        <div class="large-4 columns">
+        <div class="col-md-4">
           ...
         </div>
     </div>
-
+</div>
