@@ -1,12 +1,16 @@
 Ideabox::Application.routes.draw do
-  resources :ideas do
-    
-    #resources :comments
-    
-    resources :votes
-    
-  
-  end
+
+	get 'tags/:tag', to: 'ideas#index', as: :tag
+
+
+	resources :ideas do
+	    
+	    #resources :comments
+	    
+	    resources :votes
+	    
+	  
+	end
 
 
   root "ideas#index"

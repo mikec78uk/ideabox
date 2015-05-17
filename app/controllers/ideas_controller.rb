@@ -5,22 +5,36 @@ class IdeasController < ApplicationController
 
 	def index
 		
-		if params[:sort] == 'recent'
+		if params[:tag]
+
+			@ideas = Idea.tagged_with(params[:tag]).order("created_at desc")
+
+		else
+
+			@ideas = Idea.order("created_at desc")
+
+		end
+
+
+		
+
+		###### SORT VIA PARAMS
+		#if params[:sort] == 'recent'
 			# == is compare whereas = is assignment
 			# sort by most recent
 			
 			# could include where, for example Story.where(is_featured: true).order etc....
-			@ideas = Idea.order("created_at desc")
+		#	@ideas = Idea.order("created_at desc")
 			
 			
-		elsif params[:filter] == 'featured'
+		#elsif params[:filter] == 'featured'
 		
-			@ideas = Idea.where(is_featured: true).order("title asc")
+		#	@ideas = Idea.where(is_featured: true).order("title asc")
 			
-		else
+		#else
 			# sort by most voted
-			@ideas = Idea.order("created_at desc")
-		end
+		#	@ideas = Idea.order("created_at desc")
+		#end
 		
 		
 	end
@@ -50,7 +64,7 @@ class IdeasController < ApplicationController
 
 		respond_to do |format|
 	      if @idea.save
-	        format.html { redirect_to @idea, notice: 'Product was successfully created.' }
+	        format.html { redirect_to root_path, notice: 'Product was successfully created.' }
 	        format.json { render json: @idea, status: :created, location: @idea }
 	      else
 	        format.html { render action: "new" }
@@ -111,7 +125,11 @@ class IdeasController < ApplicationController
 		@idea.destroy
 		
 		# Let user know its successful
-		flash[:success] = "You've deleted the idea"
+		flash[:danger] = "You've deleted the idea"
+		#respond_to do |format|
+	     # format.html { redirect_to root_path, notice: 'Deleted' }
+	     # format.json { head :no_content }
+	    #end
 
 		# Go to Homepage
 		redirect_to root_path
@@ -120,7 +138,7 @@ class IdeasController < ApplicationController
 
 
 	def idea_params
-		params.require(:idea).permit(:title, :description, :problem)
+		params.require(:idea).permit(:title, :description, :problem, :tag_list)
 	end
 
 

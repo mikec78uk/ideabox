@@ -54,3 +54,5 @@ gem 'autoprefixer-rails'
 # gem 'sass-rails'
 
 gem 'simple_form'
+
+gem 'acts-as-taggable-on'

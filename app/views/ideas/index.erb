@@ -25,14 +25,22 @@
             <% @ideas.each do |idea| %>
                 <h4><%= link_to idea.title, idea_path(idea) %></h4>
                 <p><em><%= truncate(idea.problem, :length => 150, :separator => ' ')%></em>
+
+                  <p>Tags: <%=raw idea.tag_list.map { |t| link_to t, tag_path(t)}.join(', ')  %></p>
                       <br /> 
                     <%= link_to "Read more", idea_path(idea), :class => "label label-default" %>
+                    <%= link_to "edit", edit_idea_path(idea), :class => "label label-default" %>
+                    <%= link_to "delete", idea_path(idea), method: :delete, confirm: "Are you sure?", :class => "label label-default" %>
                 </p>   
+
             <% end %>
         </div>
 
         <div class="col-md-4">
-          ...
+          <h2>List of tags</h2>
+            <% tag_cloud Idea.tag_counts, %w[s m l] do |tag, css_class| %>
+              <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+            <% end %>
         </div>
     </div>
 </div>
