@@ -12,12 +12,20 @@
 
   <body>
 
-    <% flash.each do |name, msg| %>
-      <div class="alert alert-<%= name == :notice ? "success" : "danger" %>">
-        <a class="close" data-dismiss="alert">×</a>
-        <%= msg %>
-      </div>
-    <% end %>
+
+    <% if flash[:success].present? %>
+          <div class="alert alert-success">
+            <a class="close" data-dismiss="alert">×</a>
+            <%= flash[:success] %>
+          </div>
+      <% end %>
+
+      <% if flash[:error].present? %>
+          <div data-alert class="alert alert-danger">
+            <a class="close" data-dismiss="alert">×</a>
+            <%= flash[:error] %>
+          </div>
+      <% end %>
 
     <%= yield %>
 

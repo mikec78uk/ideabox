@@ -61,32 +61,21 @@ class IdeasController < ApplicationController
 	def create
 		#make @story be a blank story but with fields filled in
 		@idea = Idea.new(idea_params)
-
-		respond_to do |format|
-	      if @idea.save
-	        format.html { redirect_to root_path, notice: 'Product was successfully created.' }
-	        format.json { render json: @idea, status: :created, location: @idea }
-	      else
-	        format.html { render action: "new" }
-	        format.json { render json: @idea.errors, status: :unprocessable_entity }
-	      end
-	    end
 	
 		# Actually save to db IF validations pass
 		# If they don't pass, show the form with errors
-		#	if @idea.save
+			if @idea.save
 				# Let user know its successful
-		#		flash = { success: "Congratulations, your idea has been successfully added" }
-				#flash[:notice] = "Congratulations, your idea has been successfully added."
+				flash[:success] = "Congratulations, your idea has been successfully added."
 				# lets make it go back to the homepage
-		#		redirect_to root_path
+				redirect_to root_path
 				
-		#	else
+			else
 				# if the story DOESN'T save do this
 				# Show the new.html.erb form with errors
 				# render shows the new page (retains the values and shows the error/s)
-		#		render "new"
-		#	end	
+				render "new"
+			end	
 			
 	end
 
@@ -109,7 +98,8 @@ class IdeasController < ApplicationController
 				# Let user know its successful
 				flash[:success] = "You've updated the idea"
 				# Go to story page (show)
-				redirect_to idea_path(@idea)
+				#redirect_to idea_path(@idea)
+				redirect_to root_path
 			else
 				# Same principle as def create (if it doesn't update, show edit form with errors)
 				render "edit"
@@ -125,11 +115,7 @@ class IdeasController < ApplicationController
 		@idea.destroy
 		
 		# Let user know its successful
-		flash[:danger] = "You've deleted the idea"
-		#respond_to do |format|
-	     # format.html { redirect_to root_path, notice: 'Deleted' }
-	     # format.json { head :no_content }
-	    #end
+		flash[:error] = "You've deleted the idea"
 
 		# Go to Homepage
 		redirect_to root_path
