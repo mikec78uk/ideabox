@@ -56,3 +56,5 @@ gem 'autoprefixer-rails'
 gem 'simple_form'
 
 gem 'acts-as-taggable-on'
+
+gem 'bootstrap-tagsinput-rails'
