@@ -11,9 +11,14 @@
       <p><%= link_to "Add your idea", new_idea_path, class: "btn btn-primary btn-lg" %></p>
     </div>
 </div>
-
-
-
+<div class="container">
+    <div class="row">
+        <ul class="nav nav-tabs">
+          <li role="presentation" class="active"><a href="#">Ideas</a></li>
+          <li role="presentation"><a href="#">Challenges</a></li>
+        </ul>
+    </div>
+</div>
 <p class="text-center">Ideas so far: <%= pluralize(@ideas.count, "idea") %></p>
 
 
